@@ -41,6 +41,9 @@ app.post('/add', (req, res) => {
     //set not completed, if complete not set
     if (!data.complete)
         data.complete = false
+    //Set owner
+    if (!data.owner)
+        return res.status(200).send({ message: "No owner found." })
     // validate due date, if empty set next day
     if (!data.dueDate)
         data.dueDate = format(addDays(Date.now(), 1), "yyyy-MM-dd")
